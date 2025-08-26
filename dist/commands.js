@@ -1,0 +1,2 @@
+Office.onReady(function(){}),Office.actions.associate("action",function(e){var i={type:Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,message:"Performed action.",icon:"Icon.80x80",persistent:!0};Office.context.mailbox.item.notificationMessages.replaceAsync("ActionPerformanceNotification",i),Office.actions.associate("onShowTaskpane",function(){return Office.addin.showAsTaskpane()}),e.completed()});
+//# sourceMappingURL=commands.js.map
