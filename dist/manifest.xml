@@ -2,28 +2,38 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xsi:type="TaskPaneApp">
+
   <Id>552ffa9c-af93-438f-8623-a44b9458c4dd</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>Wellevate</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Wellevate Add-In" />
   <Description DefaultValue="A template to get started." />
-  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png" />
-  <SupportUrl DefaultValue="https://www.contoso.com/help" />
+  <IconUrl DefaultValue="https://wellevate-developers.github.io/Add-in_version3/assets/icon-32.png" />
+  <HighResolutionIconUrl
+    DefaultValue="https://wellevate-developers.github.io/Add-in_version3/assets/icon-64.png" />
+  <SupportUrl DefaultValue="https://learn.microsoft.com/office/dev/add-ins/" />
+
   <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>https://wellevate-developers.github.io</AppDomain>
   </AppDomains>
+
   <Hosts>
     <Host Name="Presentation" />
   </Hosts>
+
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://www.contoso.com/taskpane.html" />
+    <SourceLocation
+      DefaultValue="https://wellevate-developers.github.io/Add-in_version3/taskpane.html" />
   </DefaultSettings>
+
   <Permissions>ReadWriteDocument</Permissions>
+
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
     xsi:type="VersionOverridesV1_0">
+
     <Hosts>
       <Host xsi:type="Presentation">
         <DesktopFormFactor>
@@ -32,48 +42,147 @@
             <Description resid="GetStarted.Description" />
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
           </GetStarted>
+
           <FunctionFile resid="Commands.Url" />
+
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabHome">
-              <Group id="WellevateAddin" label="Wellevate Addin">
-                <Label resid="groupLabel" />
+            <!-- Create a brand new Ribbon Tab -->
+            <CustomTab id="WellevateCustomTab">
+              <Label resid="CustomTab.Label" />
+
+              <!-- First group with buttons -->
+              <Group id="WellevateAddinGroup">
+                <Label resid="WellevateGroup.Label" />
                 <Icon>
-                  <bt:Image size="16" resid="icon16" />
-                  <bt:Image size="32" resid="icon32" />
-                  <bt:Image size="80" resid="icon80" />
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
                 </Icon>
-                <Control xsi:type="Button" id="btnShowTaskpane"
-                  label="Open Panel"
-                  onAction="onShowTaskpane"
-                  icon="icon32">
+
+                <!-- Button 1 -->
+                <Control xsi:type="Button" id="btnShowTaskpane">
+                  <Label resid="TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label" />
+                    <Description resid="TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+
+                <!-- Button 2 -->
+                <Control xsi:type="Button" id="btnSample1">
+                  <Label resid="Sample1.Label" />
+                  <Supertip>
+                    <Title resid="Sample1.Label" />
+                    <Description resid="Sample1.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sampleAction1</FunctionName>
+                  </Action>
+                </Control>
+
+                <!-- Button 3 -->
+                <Control xsi:type="Button" id="btnSample2">
+                  <Label resid="Sample2.Label" />
+                  <Supertip>
+                    <Title resid="Sample2.Label" />
+                    <Description resid="Sample2.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sampleAction2</FunctionName>
+                  </Action>
+                </Control>
+
+                <!-- Button 4 -->
+                <Control xsi:type="Button" id="btnSample3">
+                  <Label resid="Sample3.Label" />
+                  <Supertip>
+                    <Title resid="Sample3.Label" />
+                    <Description resid="Sample3.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sampleAction3</FunctionName>
+                  </Action>
+                </Control>
+
+                <!-- Button 5 -->
+                <Control xsi:type="Button" id="btnSample4">
+                  <Label resid="Sample4.Label" />
+                  <Supertip>
+                    <Title resid="Sample4.Label" />
+                    <Description resid="Sample4.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sampleAction4</FunctionName>
+                  </Action>
                 </Control>
               </Group>
-            </OfficeTab>
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
+
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png" />
-        <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png" />
-        <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png" />
+        <bt:Image id="Icon.16x16"
+          DefaultValue="https://wellevate-developers.github.io/Add-in_version3/assets/icon-16.png" />
+        <bt:Image id="Icon.32x32"
+          DefaultValue="https://wellevate-developers.github.io/Add-in_version3/assets/icon-32.png" />
+        <bt:Image id="Icon.80x80"
+          DefaultValue="https://wellevate-developers.github.io/Add-in_version3/assets/icon-80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl"
           DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
-        <bt:Url id="Commands.Url" DefaultValue="https://www.contoso.com/commands.html" />
-        <bt:Url id="Taskpane.Url" DefaultValue="https://www.contoso.com/taskpane.html" />
+        <bt:Url id="Commands.Url"
+          DefaultValue="https://wellevate-developers.github.io/Add-in_version3/commands.html" />
+        <bt:Url id="Taskpane.Url"
+          DefaultValue="https://wellevate-developers.github.io/Add-in_version3/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
-        <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group" />
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane" />
+        <bt:String id="CustomTab.Label" DefaultValue="Wellevate Add-in" />
+        <bt:String id="WellevateGroup.Label" DefaultValue="Wellevate Tools" />
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Open Task Pane" />
+        <bt:String id="Sample1.Label" DefaultValue="Button 1" />
+        <bt:String id="Sample2.Label" DefaultValue="Button 2" />
+        <bt:String id="Sample3.Label" DefaultValue="Button 3" />
+        <bt:String id="Sample4.Label" DefaultValue="Button 4" />
       </bt:ShortStrings>
+
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description"
-          DefaultValue="Your sample add-in loaded successfully. Go to the HOME tab and click the 'Show Task Pane' button to get started." />
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens the Wellevate taskpane" />
+        <bt:String id="Sample1.Tooltip" DefaultValue="Does sample action 1" />
+        <bt:String id="Sample2.Tooltip" DefaultValue="Does sample action 2" />
+        <bt:String id="Sample3.Tooltip" DefaultValue="Does sample action 3" />
+        <bt:String id="Sample4.Tooltip" DefaultValue="Does sample action 4" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
